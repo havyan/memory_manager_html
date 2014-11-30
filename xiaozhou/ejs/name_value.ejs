@@ -1,0 +1,10 @@
+<div class="name-value-panel">
+    <table class="table table-hover table-striped">
+        <% for(var name in this.data) { %>
+        <tr>
+            <td class='name'> <%= name %>: </td>
+            <td class='value'> <%= this.data[name] %> </td>
+        </tr>
+        <% } %>
+    </table>
+</div>

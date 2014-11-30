@@ -1,0 +1,24 @@
+<% var stacks = $.isArray(this)?this: [this] %>
+<% $.each(stacks, function(index, stack) { %>
+<div class="stack">
+	<h3>Stack</h3>
+	<h3>Info: <span class="value"><%= stack.info %></span>&nbsp;&nbsp;&nbsp;Size: <span class="value"><%= stack.size %></span></h3>
+	<table class="table table-hover table-striped table-bordered">
+		<thead>
+			<th>Stack Type</th>
+			<th>Stack Size</th>
+		</thead>
+		<tbody>
+			<% var stackinfos = $.isArray(stack.stackinfo)?stack.stackinfo : [stack.stackinfo] %>
+			<% $.each(stackinfos, function(index, stackinfo) { %>
+			<% if(stackinfo) { %>
+			<tr>
+				<td><%= stackinfo['@type'] %></td>
+				<td><%= stackinfo['#text']%></td>
+			</tr>
+			<% } %>
+			<% }) %>
+		</tbody>
+	</table>
+</div>
+<% }) %>

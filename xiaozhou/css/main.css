@@ -1,0 +1,107 @@
+body > * {
+	width: 90%;
+	margin: auto;
+	margin-bottom: 5px;
+}
+
+.name {
+	width: 40%;
+}
+
+h1 {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+h3 {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.summary h2 {
+	margin-bottom: 20px;
+	display: block;
+}
+
+.value {
+	width: 60%;
+	color: #2B76A3;
+}
+
+.hide_button {
+	float: right;
+	background: url(../images/icon_sprite.svg) 0 -3350px no-repeat;
+	height: 10px;
+	width: 20px;
+	margin-right: 3px;
+	margin-top: 8px;
+	opacity: 0.5;
+}
+
+.hide_button.section_hide {
+	background: url(../images/icon_sprite.svg) 0 -3400px no-repeat;
+}
+
+.section_title {
+	margin-left: 5px;
+}
+
+.section_head {
+	margin-bottom: 8px;
+}
+
+.section_content {
+	width: 96%;
+	margin: auto;
+}
+
+.summary .manage-memory {
+	width: 48%;
+	float: left;
+}
+
+.summary .raw-memory {
+	width: 48%;
+	float: right;
+}
+
+.summary .pool {
+	clear: both;
+}
+
+.summary .summary-pie {
+	clear: both;
+}
+
+.summary .summary-pie .manage-pie {
+	width: 48%;
+	float: left;
+}
+
+.summary .summary-pie .raw-pie {
+	width: 48%;
+	margin-left: 52%;
+}
+
+.stack {
+	display: inline-block;
+	width: 48%;
+	border: solid 1px #ddd;
+	margin-bottom: 3px;
+	padding: 3px;
+}
+
+.inner-header {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.inner-section {
+	border: solid 1px #ddd;
+	margin-bottom: 5px;
+}

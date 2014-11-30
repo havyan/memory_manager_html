@@ -1,0 +1,16 @@
+<% var boundaryChecks=$.isArray(this)?this: [this] %>
+<% $.each(boundaryChecks, function(index, boundaryCheck) { %>
+<div class="inner-section">
+	<div class="inner-header">
+		<p>
+			Boundary Check Info: <span class="value"><%= boundaryCheck.info %></span>
+		</p>
+		<p>
+			Boundary Check Time: <span class="value"><%= boundaryCheck.time %></span>
+		</p>
+	</div>
+	<div class="boundary-stacks">
+		<%== can.view.render("ejs/stack.ejs", boundaryCheck.stack) %>
+	</div>
+</div>
+<% }) %>
