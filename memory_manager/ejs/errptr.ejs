@@ -1,15 +1,19 @@
 <% var errors=$.isArray(this)?this: [this] %>
 <% $.each(errors, function(index, error) { %>
 <div class="inner-section">
+	<div class="section_head">
+        <div class="hide_button"></div>
+        <div class="section_title">
+        	Error
+        </div>
+    </div>
 	<div class="inner-header">
 		<p>
-			Error Info: <span class="value"><%= error.info %></span>
-		</p>
-		<p>
+			Error Info: <span class="value"><%= error.info %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			Error Time: <span class="value"><%= error.time %></span>
 		</p>
 	</div>
-	<div class="boundary-stacks">
+	<div class="section_content">
 		<%== can.view.render("ejs/stack.ejs", error.stack) %>
 	</div>
 </div>

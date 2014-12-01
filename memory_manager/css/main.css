@@ -76,7 +76,7 @@ h3 {
 }
 
 .section_content {
-	width: 96%;
+	width: 98%;
 	margin: auto;
 }
 
@@ -92,6 +92,11 @@ h3 {
 
 .summary .pool {
 	clear: both;
+}
+
+.summary .pool table {
+	width: 96%;
+	margin: auto;
 }
 
 .summary .summary-pie {
@@ -129,7 +134,7 @@ h3 {
 	width: 98%;
 }
 
-.stack .section_head .section_title {
+.stack .section_head .section_title, .inner-section .section_head .section_title {
 	font-size: 15px;
 	font-weight: bold;
 }
@@ -137,6 +142,7 @@ h3 {
 .inner-header {
 	font-size: 15px;
 	font-weight: bold;
+	margin-left: 1%;
 }
 
 .inner-section {

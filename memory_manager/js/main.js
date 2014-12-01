@@ -16,7 +16,7 @@
 			$('.hide_button').click(function(e) {
 				var $e = $(e.currentTarget);
 				var isHide = $e.hasClass("section_hide");
-				var refElement = $($e.parent().parent()).find('.section_content');
+				var refElement = $($e.parent().parent()).children('.section_content');
 				if (!isHide) {
 					refElement.hide();
 				} else {
@@ -27,12 +27,12 @@
 		},
 
 		initBoundaryCheck : function(element, data) {
-			this.createSection(element, "Boundary Check");
+			this.createSection(element, "Boundary Checks");
 			element.find('.section_content').html(can.view('ejs/boundary_check.ejs', data));
 		},
 
 		initError : function(element, data) {
-			this.createSection(element, "Error");
+			this.createSection(element, "Errors");
 			element.find('.section_content').html(can.view('ejs/errptr.ejs', data));
 		},
 
