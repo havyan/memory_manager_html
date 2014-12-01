@@ -1,4 +1,4 @@
-body > * {
+body>* {
 	width: 90%;
 	margin: auto;
 	margin-bottom: 5px;
@@ -28,6 +28,10 @@ h3 {
 	display: block;
 }
 
+.hide {
+	display: none;
+}
+
 .value {
 	width: 60%;
 	color: #2B76A3;
@@ -49,10 +53,26 @@ h3 {
 
 .section_title {
 	margin-left: 5px;
+	margin-top: 0px;
 }
 
 .section_head {
 	margin-bottom: 8px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.stack .section_head {
+	background-color: #BEBEBE;
+	border-color: #CECECE;
+	border-width: 1px 0px 1px 0px;
+	background-image: -moz-linear-gradient(top, #F3F3F3, #D6D6D6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F3F3F3), to(#D6D6D6));
+	background-image: -webkit-linear-gradient(top, #F3F3F3, #D6D6D6);
+	background-image: -o-linear-gradient(top, #F3F3F3, #D6D6D6);
+	background-image: linear-gradient(to bottom, #F3F3F3, #D6D6D6);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffF3F3F3', endColorstr='#ffD6D6D6', GradientType=0);
 }
 
 .section_content {
@@ -93,7 +113,25 @@ h3 {
 	width: 48%;
 	border: solid 1px #ddd;
 	margin-bottom: 3px;
-	padding: 3px;
+	margin-left: 3px;
+	padding-bottom: 3px;
+}
+
+.stack h3 {
+	margin-left: 3px;
+}
+
+.stack .hide_button {
+	margin-top: 5px;
+}
+
+.stack .section_content {
+	width: 98%;
+}
+
+.stack .section_head .section_title {
+	font-size: 15px;
+	font-weight: bold;
 }
 
 .inner-header {

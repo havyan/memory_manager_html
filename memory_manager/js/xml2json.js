@@ -36,6 +36,10 @@
 	};
 
 	$.xml2json = function(xml) {
-		return parseElement($(xml));
+		if(typeof xml === 'string') {
+			return parseElement($($.parseXML(xml)));
+		} else {
+			return parseElement($(xml));
+		}
 	};
 })();

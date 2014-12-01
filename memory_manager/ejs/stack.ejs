@@ -1,9 +1,14 @@
 <% var stacks = $.isArray(this)?this: [this] %>
 <% $.each(stacks, function(index, stack) { %>
 <div class="stack">
-	<h3>Stack</h3>
+	<div class="section_head">
+        <div class="hide_button section_hide"></div>
+        <div class="section_title">
+        	Stack
+        </div>
+    </div>
 	<h3>Info: <span class="value"><%= stack.info %></span>&nbsp;&nbsp;&nbsp;Size: <span class="value"><%= stack.size %></span></h3>
-	<table class="table table-hover table-striped table-bordered">
+	<table class="table table-hover table-striped table-bordered section_content" style="display:none;">
 		<thead>
 			<th>Stack Type</th>
 			<th>Stack Size</th>

@@ -9,6 +9,21 @@
 			this.initBoundaryCheck(element.find('.memory-leak'), options.data.memleak, "Memory Leak");
 			// this.initBoundaryCheck(element.find('.memory-consume'),
 			// options.data.errptr, "Memory Consume");
+			this.initEvents();
+		},
+		
+		initEvents: function() {
+			$('.hide_button').click(function(e) {
+				var $e = $(e.currentTarget);
+				var isHide = $e.hasClass("section_hide");
+				var refElement = $($e.parent().parent()).find('.section_content');
+				if (!isHide) {
+					refElement.hide();
+				} else {
+					refElement.show();
+				}
+				$e.toggleClass("section_hide");
+			});
 		},
 
 		initBoundaryCheck : function(element, data) {
@@ -135,16 +150,6 @@
 				title : title,
 				level : level ? level : 1
 			}));
-			element.find('.hide_button').click(function(e) {
-				var isHide = element.find('.hide_button').hasClass("section_hide");
-				var refElement = element.find('.section_content');
-				if (!isHide) {
-					refElement.hide();
-				} else {
-					refElement.show();
-				}
-				element.find('.hide_button').toggleClass("section_hide");
-			});
 		}
 	});
 	$(document).ready(function() {
