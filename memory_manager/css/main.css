@@ -23,6 +23,30 @@ h3 {
 	font-weight: bold;
 }
 
+.file {
+	width: 400px;
+	height: 50px;
+	margin: auto;
+	margin-top: 30px;
+}
+
+.file>* {
+	vertical-align: middle;
+}
+
+.file-name {
+	height: 33px;
+	font-size: 20px;
+}
+
+.separator {
+	height: 2px;
+	background: gray;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	opacity: 0.3;
+}
+
 .summary h2 {
 	margin-bottom: 20px;
 	display: block;
@@ -45,6 +69,12 @@ h3 {
 	margin-right: 3px;
 	margin-top: 8px;
 	opacity: 0.5;
+}
+
+.memory-consume-section {
+	border: solid 1px #ddd;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .hide_button.section_hide {
@@ -92,6 +122,11 @@ h3 {
 
 .summary .pool {
 	clear: both;
+}
+
+.pool-table-container {
+	height: 600px;
+	overflow-y: scroll;
 }
 
 .summary .pool table {

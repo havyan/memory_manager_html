@@ -1,0 +1,36 @@
+<% var memoryConsumes=$.isArray(this)?this: [this] %>
+<% $.each(memoryConsumes, function(index, memoryConsume) { %>
+<div class="inner-section">
+	<div class="section_head">
+        <div class="hide_button"></div>
+        <div class="section_title">
+        	Memory Consume
+        </div>
+    </div>
+	<div class="inner-header">
+		<p>
+			Memory Consume Info: <span class="value"><%= memoryConsume.info %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Memory Consume Total: <span class="value"><%= memoryConsume.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Memory Consume Time: <span class="value"><%= memoryConsume.time %>
+		</p>
+	</div>
+	<div class="section_content">
+		<% var memoryConsumeSections = $.isArray(memoryConsume.section)?memoryConsume.section: [memoryConsume.section] %>
+		<% $.each(memoryConsumeSections, function(sectionIndex, memoryConsumeSection) { %>
+		<div class="memory-consume-section">
+				<div class="inner-header">
+					<p>
+						Memory Consume Section Total: <span class="value"><%= memoryConsumeSection.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Memory Consume Section Count: <span class="value"><%= memoryConsumeSection.count %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Memory Consume count Percentage: <span class="value"><%= memoryConsumeSection.percentage %>
+					</p>
+				</div>
+				<div>
+					<%== can.view.render("ejs/stack.ejs", memoryConsumeSection.stack) %>
+				</div>
+		</div>
+		<% }) %>
+	</div>
+	<div class="memory-consume-section-pie" index="<%= index %>"></div>
+</div>
+<% }) %>

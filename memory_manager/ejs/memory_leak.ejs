@@ -1,0 +1,20 @@
+<% var memoryLeaks=$.isArray(this)?this: [this] %>
+<% $.each(memoryLeaks, function(index, memoryLeak) { %>
+<div class="inner-section">
+	<div class="section_head">
+        <div class="hide_button"></div>
+        <div class="section_title">
+        	Memory Check
+        </div>
+    </div>
+	<div class="inner-header">
+		<p>
+			Memory Leak Total: <span class="value"><%= memoryLeak.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Memory Leak Count: <span class="value"><%= memoryLeak.count %></span>
+		</p>
+	</div>
+	<div class="section_content">
+		<%== can.view.render("ejs/stack.ejs", memoryLeak.stack) %>
+	</div>
+</div>
+<% }) %>

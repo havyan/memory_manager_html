@@ -75,8 +75,7 @@
 		<info>main.cpp:67</info>
 		<total>12226</total>
 		<time>0000:00:00</time>
-		<total>
-			<index>1</index>
+		<section index="1">
 			<total>10006</total>
 			<count>1</count>
 			<percentage>81</percentage>
@@ -89,7 +88,8 @@
 				<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
 				<stackinfo type="backtrace">??:0 _start()</stackinfo>
 			</stack>
-			<index>2</index>
+		</section>
+		<section index="2">
 			<total>2048</total>
 			<count>128</count>
 			<percentage>16</percentage>
@@ -103,10 +103,11 @@
 				<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
 				<stackinfo type="backtrace">??:0 _start()</stackinfo>
 			</stack>
-			<index>3</index>
+		</section>
+		<section index="3">
 			<total>160</total>
 			<count>16</count>
-			<percentage>1</percentage>
+			<percentage>3</percentage>
 			<stack>
 				<info>allocated at</info>
 				<size>160</size>
@@ -116,7 +117,7 @@
 				<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
 				<stackinfo type="backtrace">??:0 _start()</stackinfo>
 			</stack>
-		</total>
+		</section>
 		<count>
 			<index>1</index>
 			<total>2048</total>

@@ -6,13 +6,13 @@
 			this.initSummary(element.find('.summary'), options.data.summary);
 			this.initBoundaryCheck(element.find('.boundary-check'), options.data.boundarycheck);
 			this.initError(element.find('.error'), options.data.errptr);
-			this.initBoundaryCheck(element.find('.memory-leak'), options.data.memleak, "Memory Leak");
-			// this.initBoundaryCheck(element.find('.memory-consume'),
+			this.initMemoryLeak(element.find('.memory-leak'), options.data.memleak);
+			this.initMemoryConsume(element.find('.memory-consume'), options.data.memconsume);
 			// options.data.errptr, "Memory Consume");
 			this.initEvents();
 		},
-		
-		initEvents: function() {
+
+		initEvents : function() {
 			$('.hide_button').click(function(e) {
 				var $e = $(e.currentTarget);
 				var isHide = $e.hasClass("section_hide");
@@ -23,6 +23,37 @@
 					refElement.show();
 				}
 				$e.toggleClass("section_hide");
+			});
+		},
+
+		initMemoryLeak : function(element, data) {
+			this.createSection(element, "Memory Leaks");
+			element.find('.section_content').html(can.view('ejs/memory_leak.ejs', data));
+		},
+
+		initMemoryConsume : function(element, data) {
+			this.createSection(element, "Memory Consumes");
+			element.find('.section_content').html(can.view('ejs/memory_consume.ejs', data));
+			var memoryConsumes = $.isArray(data) ? data : [ data ];
+			$.each(memoryConsumes, function(index, memoryConsume) {
+				var sections = $.isArray(memoryConsume.section) ? memoryConsume.section : [ memoryConsume.section ];
+				var pieData = [];
+				$.each(sections, function(sectionIndex, section) {
+					pieData.push([ 'Index ' + sectionIndex, parseInt(section.percentage) ]);
+				});
+				element.find('.memory-consume-section-pie[index=' + index + ']').highcharts({
+					title : {
+						text : 'Memory Consume'
+					},
+					credits : {
+						enabled : false
+					},
+					series : [ {
+						type : 'pie',
+						name : 'Memory Consume',
+						data : pieData
+					} ]
+				});
 			});
 		},
 
@@ -75,20 +106,25 @@
 			element.find('.raw-memory-content').html(can.view('ejs/name_value.ejs', {
 				data : rawMemory
 			}));
-			var successful = parseInt(summary.mgrmemory.allocatesucccount / (summary.mgrmemory.allocatesucccount + summary.mgrmemory.allocatefailcount) * 100);
+			var successful = parseInt(parseInt(summary.mgrmemory.allocatesucccount)
+					/ (parseInt(summary.mgrmemory.allocatesucccount) + parseInt(summary.mgrmemory.allocatefailcount)) * 100);
 			var fail = 100 - successful;
 			element.find('.summary-pie .manage-pie').highcharts({
 				title : {
 					text : 'Allocated Count'
 				},
-				series : [{
+				credits : {
+					enabled : false
+				},
+				series : [ {
 					type : 'pie',
 					name : 'Allocated Count',
-					data : [['Succsessful', successful], ['Fail', fail]]
-				}]
+					data : [ [ 'Succsessful', successful ], [ 'Fail', fail ] ]
+				} ]
 			});
 
-			successful = parseInt(summary.rawmemory.allocatesucccount / (summary.rawmemory.allocatesucccount + summary.rawmemory.allocatefailcount) * 100);
+			successful = parseInt(parseInt(summary.rawmemory.allocatesucccount)
+					/ (parseInt(summary.rawmemory.allocatesucccount) + parseInt(summary.rawmemory.allocatefailcount)) * 100);
 			fail = 100 - successful;
 			element.find('.summary-pie .raw-pie').highcharts({
 				title : {
@@ -96,21 +132,24 @@
 				},
 				plotOptions : {
 					pie : {
-						colors : ['#4D740F', '#D31F30']
+						colors : [ '#4D740F', '#D31F30' ]
 					}
 				},
-				series : [{
+				credits : {
+					enabled : false
+				},
+				series : [ {
 					type : 'pie',
 					name : 'Raw Count',
-					data : [['Succsessful', successful], ['Fail', fail]]
-				}]
+					data : [ [ 'Succsessful', successful ], [ 'Fail', fail ] ]
+				} ]
 			});
 
 			var dataSizeData = [], maxUsedBlocksSize = [], maxUsedBlocksCount = [];
 			$.each(summary.pool, function(index, e) {
-				dataSizeData.push([parseInt(e.index), parseInt(e.datasize)]);
-				maxUsedBlocksSize.push([parseInt(e.index), parseInt(e.maxusedblkssize)]);
-				maxUsedBlocksCount.push([parseInt(e.index), parseInt(e.maxusedblkscount)]);
+				dataSizeData.push([ parseInt(e.index), parseInt(e.datasize) ]);
+				maxUsedBlocksSize.push([ parseInt(e.index), parseInt(e.maxusedblkssize) ]);
+				maxUsedBlocksCount.push([ parseInt(e.index), parseInt(e.maxusedblkscount) ]);
 			});
 
 			$('.summary .data-size-line').highcharts({
@@ -125,6 +164,9 @@
 						text : 'Data Size'
 					}
 				},
+				credits : {
+					enabled : false
+				},
 				plotOptions : {
 					line : {
 						marker : {
@@ -132,7 +174,7 @@
 						}
 					}
 				},
-				series : [{
+				series : [ {
 					name : 'Data Size',
 					data : dataSizeData
 				}, {
@@ -141,7 +183,7 @@
 				}, {
 					name : 'Max Used Blocks Size',
 					data : maxUsedBlocksSize
-				}]
+				} ]
 			});
 		},
 
@@ -152,12 +194,21 @@
 			}));
 		}
 	});
-	$(document).ready(function() {
-		$.get('example.xml', function(data) {
+
+	var openFile = function() {
+		var fileName = $('.file-name').val();
+		$.get('data/' + fileName, function(data) {
 			var json = $.xml2json(data);
-			new MainPanel($('body'), {
+			var main = $('.main').empty().html(can.view('ejs/main.ejs'));
+			new MainPanel(main, {
 				data : json.exmemmgr
 			});
-		}, 'xml');
+		});
+	};
+	$(document).ready(function() {
+		openFile();
+		$('.open-file').click(function() {
+			openFile();
+		});
 	});
 })();
