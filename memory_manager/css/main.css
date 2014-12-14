@@ -190,3 +190,23 @@ h3 {
 	border: solid 1px #ddd;
 	margin-bottom: 5px;
 }
+
+.memory-consume-total, .memory-consume-count {
+	margin: 5px;
+	border: solid 1px #ddd;
+}
+
+.memory-consume-total-title, .memory-consume-count-title {
+	font-size: 18px;
+	font-style: bold;
+}
+
+.memory-consume-count, .memory-consume-total  {
+	display: inline-block;
+	vertical-align: top;
+	width: 49%;
+}
+
+.memory-consume-total .stack , .memory-consume-count .stack{
+	width: 90%;
+}

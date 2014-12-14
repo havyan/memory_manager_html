@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exmemmgr>
-	<datetime>2014-11-20 7:47:52</datetime>
+	<datetime>2014-11-20 7:47:24</datetime>
 	<ver>profession-1.10</ver>
 	<debug>true</debug>
 	<exefilename>a.out</exefilename>
@@ -72,94 +72,102 @@
 		</stack>
 	</boundarycheck>
 	<memconsume>
-		<info>main.cpp:67</info>
-		<total>12226</total>
-		<time>0000:00:00</time>
-		<section index="1">
-			<total>10006</total>
-			<count>1</count>
-			<percentage>35</percentage>
-			<stack>
-				<info>allocated at</info>
-				<size>10006</size>
-				<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
-				<stackinfo type="backtrace">??:0 malloc()</stackinfo>
-				<stackinfo type="backtrace">main.cpp:63 main()</stackinfo>
-				<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
-				<stackinfo type="backtrace">??:0 _start()</stackinfo>
-			</stack>
-		</section>
-		<section index="2">
-			<total>2048</total>
-			<count>128</count>
-			<percentage>30</percentage>
-			<stack>
-				<info>allocated at</info>
-				<size>2048</size>
-				<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
-				<stackinfo type="backtrace">??:0 malloc()</stackinfo>
-				<stackinfo type="backtrace">??:0 realloc()</stackinfo>
-				<stackinfo type="backtrace">main.cpp:58 main()</stackinfo>
-				<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
-				<stackinfo type="backtrace">??:0 _start()</stackinfo>
-			</stack>
-		</section>
-		<section index="3">
-			<total>160</total>
-			<count>16</count>
-			<percentage>30</percentage>
-			<stack>
-				<info>allocated at</info>
-				<size>160</size>
-				<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
-				<stackinfo type="backtrace">??:0 malloc()</stackinfo>
-				<stackinfo type="backtrace">main.cpp:42 main()</stackinfo>
-				<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
-				<stackinfo type="backtrace">??:0 _start()</stackinfo>
-			</stack>
-		</section>
+		<total>
+			<info>main.cpp:67</info>
+			<total>12226</total>
+			<time>0000:00:00</time>
+			<section index="1">
+				<total>10006</total>
+				<count>1</count>
+				<percentage>81</percentage>
+				<stack>
+					<info>allocated at</info>
+					<size>10006</size>
+					<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
+					<stackinfo type="backtrace">??:0 malloc()</stackinfo>
+					<stackinfo type="backtrace">main.cpp:63 main()</stackinfo>
+					<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
+					<stackinfo type="backtrace">??:0 _start()</stackinfo>
+				</stack>
+			</section>
+			<section index="2">
+				<total>2048</total>
+				<count>128</count>
+				<percentage>16</percentage>
+				<stack>
+					<info>allocated at</info>
+					<size>2048</size>
+					<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
+					<stackinfo type="backtrace">??:0 malloc()</stackinfo>
+					<stackinfo type="backtrace">??:0 realloc()</stackinfo>
+					<stackinfo type="backtrace">main.cpp:58 main()</stackinfo>
+					<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
+					<stackinfo type="backtrace">??:0 _start()</stackinfo>
+				</stack>
+			</section>
+			<section index="3">
+				<total>160</total>
+				<count>16</count>
+				<percentage>3</percentage>
+				<stack>
+					<info>allocated at</info>
+					<size>160</size>
+					<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
+					<stackinfo type="backtrace">??:0 malloc()</stackinfo>
+					<stackinfo type="backtrace">main.cpp:42 main()</stackinfo>
+					<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
+					<stackinfo type="backtrace">??:0 _start()</stackinfo>
+				</stack>
+			</section>
+		</total>
 		<count>
-			<index>1</index>
-			<total>2048</total>
-			<count>128</count>
-			<percentage>16</percentage>
-			<stack>
-				<info>allocated at</info>
-				<size>2048</size>
-				<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
-				<stackinfo type="backtrace">??:0 malloc()</stackinfo>
-				<stackinfo type="backtrace">??:0 realloc()</stackinfo>
-				<stackinfo type="backtrace">main.cpp:58 main()</stackinfo>
-				<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
-				<stackinfo type="backtrace">??:0 _start()</stackinfo>
-			</stack>
-			<index>2</index>
-			<total>160</total>
-			<count>16</count>
-			<percentage>1</percentage>
-			<stack>
-				<info>allocated at</info>
-				<size>160</size>
-				<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
-				<stackinfo type="backtrace">??:0 malloc()</stackinfo>
-				<stackinfo type="backtrace">main.cpp:42 main()</stackinfo>
-				<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
-				<stackinfo type="backtrace">??:0 _start()</stackinfo>
-			</stack>
-			<index>3</index>
-			<total>12</total>
-			<count>3</count>
-			<percentage>0</percentage>
-			<stack>
-				<info>allocated at</info>
-				<size>12</size>
-				<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
-				<stackinfo type="backtrace">??:0 malloc()</stackinfo>
-				<stackinfo type="backtrace">??:0 _Znwj()</stackinfo>
-				<stackinfo type="backtrace">main.cpp:49 main()</stackinfo>
-				<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
-				<stackinfo type="backtrace">??:0 _start()</stackinfo>
-			</stack>
+			<section index="1">
+				<index>1</index>
+				<total>2048</total>
+				<count>128</count>
+				<percentage>16</percentage>
+				<stack>
+					<info>allocated at</info>
+					<size>2048</size>
+					<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
+					<stackinfo type="backtrace">??:0 malloc()</stackinfo>
+					<stackinfo type="backtrace">??:0 realloc()</stackinfo>
+					<stackinfo type="backtrace">main.cpp:58 main()</stackinfo>
+					<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
+					<stackinfo type="backtrace">??:0 _start()</stackinfo>
+				</stack>
+			</section>
+			<section index="1">			
+				<index>2</index>
+				<total>160</total>
+				<count>16</count>
+				<percentage>1</percentage>
+				<stack>
+					<info>allocated at</info>
+					<size>160</size>
+					<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
+					<stackinfo type="backtrace">??:0 malloc()</stackinfo>
+					<stackinfo type="backtrace">main.cpp:42 main()</stackinfo>
+					<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
+					<stackinfo type="backtrace">??:0 _start()</stackinfo>
+				</stack>
+			</section>
+			<section index="3">
+				<index>3</index>
+				<total>12</total>
+				<count>3</count>
+				<percentage>0</percentage>
+				<stack>
+					<info>allocated at</info>
+					<size>12</size>
+					<stackinfo type="backtrace">??:0 AddRawRecord()</stackinfo>
+					<stackinfo type="backtrace">??:0 malloc()</stackinfo>
+					<stackinfo type="backtrace">??:0 _Znwj()</stackinfo>
+					<stackinfo type="backtrace">main.cpp:49 main()</stackinfo>
+					<stackinfo type="backtrace">??:0 __libc_start_main()</stackinfo>
+					<stackinfo type="backtrace">??:0 _start()</stackinfo>
+				</stack>
+			</section>
 		</count>
 	</memconsume>
 	<boundarycheck>

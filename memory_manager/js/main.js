@@ -36,21 +36,41 @@
 			element.find('.section_content').html(can.view('ejs/memory_consume.ejs', data));
 			var memoryConsumes = $.isArray(data) ? data : [ data ];
 			$.each(memoryConsumes, function(index, memoryConsume) {
-				var sections = $.isArray(memoryConsume.section) ? memoryConsume.section : [ memoryConsume.section ];
+				var total = memoryConsume.total;
+				var sections = $.isArray(total.section) ? total.section : [ total.section ];
 				var pieData = [];
 				$.each(sections, function(sectionIndex, section) {
 					pieData.push([ 'Index ' + sectionIndex, parseInt(section.percentage) ]);
 				});
-				element.find('.memory-consume-section-pie[index=' + index + ']').highcharts({
+				element.find('.memory-consume-section-total-pie[index=' + index + ']').highcharts({
 					title : {
-						text : 'Memory Consume'
+						text : 'Memory Consume Total'
 					},
 					credits : {
 						enabled : false
 					},
 					series : [ {
 						type : 'pie',
-						name : 'Memory Consume',
+						name : 'Memory Consume Total',
+						data : pieData
+					} ]
+				});
+				var count = memoryConsume.count;
+				var sections = $.isArray(count.section) ? count.section : [ count.section ];
+				var pieData = [];
+				$.each(sections, function(sectionIndex, section) {
+					pieData.push([ 'Index ' + sectionIndex, parseInt(section.percentage) ]);
+				});
+				element.find('.memory-consume-section-count-pie[index=' + index + ']').highcharts({
+					title : {
+						text : 'Memory Consume Count'
+					},
+					credits : {
+						enabled : false
+					},
+					series : [ {
+						type : 'pie',
+						name : 'Memory Consume Count',
 						data : pieData
 					} ]
 				});
@@ -197,7 +217,7 @@
 
 	var openFile = function() {
 		var fileName = $('.file-name').val();
-		$.get('data/' + fileName, function(data) {
+		$.get('data/' + fileName + '?' + Date.now(), function(data) {
 			var json = $.xml2json(data);
 			var main = $('.main').empty().html(can.view('ejs/main.ejs'));
 			new MainPanel(main, {

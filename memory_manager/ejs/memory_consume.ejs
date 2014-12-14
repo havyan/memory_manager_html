@@ -7,30 +7,65 @@
         	Memory Consume
         </div>
     </div>
-	<div class="inner-header">
-		<p>
-			Memory Consume Info: <span class="value"><%= memoryConsume.info %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			Memory Consume Total: <span class="value"><%= memoryConsume.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			Memory Consume Time: <span class="value"><%= memoryConsume.time %>
-		</p>
-	</div>
 	<div class="section_content">
-		<% var memoryConsumeSections = $.isArray(memoryConsume.section)?memoryConsume.section: [memoryConsume.section] %>
-		<% $.each(memoryConsumeSections, function(sectionIndex, memoryConsumeSection) { %>
-		<div class="memory-consume-section">
-				<div class="inner-header">
-					<p>
-						Memory Consume Section Total: <span class="value"><%= memoryConsumeSection.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Memory Consume Section Count: <span class="value"><%= memoryConsumeSection.count %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Memory Consume count Percentage: <span class="value"><%= memoryConsumeSection.percentage %>
-					</p>
+		<% var total= memoryConsume.total %>
+		<div class="memory-consume-total">
+			<p class="memory-consume-total-title">Total</p>
+			<div class="inner-header">
+				<p>
+					Info: <span class="value"><%= total.info %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					Total: <span class="value"><%= total.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					Time: <span class="value"><%= total.time %>
+				</p>
+			</div>
+			<div class="section_content">
+				<% var memoryConsumeSections = $.isArray(total.section)?total.section: [total.section] %>
+				<% $.each(memoryConsumeSections, function(sectionIndex, memoryConsumeSection) { %>
+				<div class="memory-consume-section">
+						<div class="inner-header">
+							<p>
+								Section Total: <span class="value"><%= memoryConsumeSection.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								Section Count: <span class="value"><%= memoryConsumeSection.count %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								Count Percentage: <span class="value"><%= memoryConsumeSection.percentage %>
+							</p>
+						</div>
+						<div>
+							<%== can.view.render("ejs/stack.ejs", memoryConsumeSection.stack) %>
+						</div>
 				</div>
-				<div>
-					<%== can.view.render("ejs/stack.ejs", memoryConsumeSection.stack) %>
-				</div>
+				<% }) %>
+			</div>
+			<div class="memory-consume-section-total-pie" index="<%= index %>"></div>
 		</div>
-		<% }) %>
+		<% var count = memoryConsume.count %>
+		<div class="memory-consume-count">
+			<p class="memory-consume-count-title">Count</p>
+			<div class="inner-header">
+				<p>
+					Info: <span class="value"><%= count.info %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					Total: <span class="value"><%= count.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					Time: <span class="value"><%= count.time %>
+				</p>
+			</div>
+			<div class="section_content">
+				<% var memoryConsumeSections = $.isArray(count.section)?count.section: [count.section] %>
+				<% $.each(memoryConsumeSections, function(sectionIndex, memoryConsumeSection) { %>
+				<div class="memory-consume-section">
+						<div class="inner-header">
+							<p>
+								Section Total: <span class="value"><%= memoryConsumeSection.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								Section Count: <span class="value"><%= memoryConsumeSection.count %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								count Percentage: <span class="value"><%= memoryConsumeSection.percentage %>
+							</p>
+						</div>
+						<div>
+							<%== can.view.render("ejs/stack.ejs", memoryConsumeSection.stack) %>
+						</div>
+				</div>
+				<% }) %>
+			</div>
+			<div class="memory-consume-section-count-pie" index="<%= index %>"></div>
+		</div>
 	</div>
-	<div class="memory-consume-section-pie" index="<%= index %>"></div>
 </div>
 <% }) %>
