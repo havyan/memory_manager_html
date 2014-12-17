@@ -103,107 +103,89 @@
 		},
 
 		initSummary : function(element, summary) {
-			this.createSection(element, "Summary");
+			this.createSection(element, "Summarys");
 			element.find('.section_content').html(can.view('ejs/summary.ejs', summary));
-			var manageMemory = {
-				"Max Memory Consuption" : summary.mgrmemory.maxmemconsumption,
-				"Allocated Succsessful Count" : summary.mgrmemory.allocatesucccount,
-				"Allocated Fail Count" : summary.mgrmemory.allocatefailcount,
-				"Deallocated Count" : summary.mgrmemory.deallocatecount,
-				"Allocated Succsessful Size" : summary.mgrmemory.allocatesuccsize,
-				"Allocated Fail Size" : summary.mgrmemory.allocatefailsize,
-			};
-			element.find('.manage-memory-content').html(can.view('ejs/name_value.ejs', {
-				data : manageMemory
-			}));
-			var rawMemory = {
-				"Allocated Succsessful Count" : summary.rawmemory.allocatesucccount,
-				"Allocated Fail Count" : summary.rawmemory.allocatefailcount,
-				"Deallocated Count" : summary.rawmemory.deallocatecount,
-				"Allocated Succsessful Size" : summary.rawmemory.allocatesuccsize,
-				"Allocated Fail Size" : summary.rawmemory.allocatefailsize,
-			};
-			element.find('.raw-memory-content').html(can.view('ejs/name_value.ejs', {
-				data : rawMemory
-			}));
-			var successful = parseInt(parseInt(summary.mgrmemory.allocatesucccount)
-					/ (parseInt(summary.mgrmemory.allocatesucccount) + parseInt(summary.mgrmemory.allocatefailcount)) * 100);
-			var fail = 100 - successful;
-			element.find('.summary-pie .manage-pie').highcharts({
-				title : {
-					text : 'Allocated Count'
-				},
-				credits : {
-					enabled : false
-				},
-				series : [ {
-					type : 'pie',
-					name : 'Allocated Count',
-					data : [ [ 'Succsessful', successful ], [ 'Fail', fail ] ]
-				} ]
-			});
-
-			successful = parseInt(parseInt(summary.rawmemory.allocatesucccount)
-					/ (parseInt(summary.rawmemory.allocatesucccount) + parseInt(summary.rawmemory.allocatefailcount)) * 100);
-			fail = 100 - successful;
-			element.find('.summary-pie .raw-pie').highcharts({
-				title : {
-					text : 'Raw Count'
-				},
-				plotOptions : {
-					pie : {
-						colors : [ '#4D740F', '#D31F30' ]
-					}
-				},
-				credits : {
-					enabled : false
-				},
-				series : [ {
-					type : 'pie',
-					name : 'Raw Count',
-					data : [ [ 'Succsessful', successful ], [ 'Fail', fail ] ]
-				} ]
-			});
-
-			var dataSizeData = [], maxUsedBlocksSize = [], maxUsedBlocksCount = [];
-			$.each(summary.pool, function(index, e) {
-				dataSizeData.push([ parseInt(e.index), parseInt(e.datasize) ]);
-				maxUsedBlocksSize.push([ parseInt(e.index), parseInt(e.maxusedblkssize) ]);
-				maxUsedBlocksCount.push([ parseInt(e.index), parseInt(e.maxusedblkscount) ]);
-			});
-
-			$('.summary .data-size-line').highcharts({
-				chart : {
-					type : 'line'
-				},
-				title : {
-					text : 'Data Size Line',
-				},
-				yAxis : {
+			var summarys=$.isArray(summary)?summary: [summary];
+			$.each(summarys, function(index, summary) {
+				var successful = parseInt(parseInt(summary.mgrmemory.allocatesucccount)
+						/ (parseInt(summary.mgrmemory.allocatesucccount) + parseInt(summary.mgrmemory.allocatefailcount)) * 100);
+				var fail = 100 - successful;
+				element.find('.summary-pie[index=' + index +'] .manage-pie').highcharts({
 					title : {
-						text : 'Data Size'
-					}
-				},
-				credits : {
-					enabled : false
-				},
-				plotOptions : {
-					line : {
-						marker : {
-							enabled : false
+						text : 'Allocated Count'
+					},
+					credits : {
+						enabled : false
+					},
+					series : [ {
+						type : 'pie',
+						name : 'Allocated Count',
+						data : [ [ 'Succsessful', successful ], [ 'Fail', fail ] ]
+					} ]
+				});
+	
+				successful = parseInt(parseInt(summary.rawmemory.allocatesucccount)
+						/ (parseInt(summary.rawmemory.allocatesucccount) + parseInt(summary.rawmemory.allocatefailcount)) * 100);
+				fail = 100 - successful;
+				element.find('.summary-pie[index=' + index +'] .raw-pie').highcharts({
+					title : {
+						text : 'Raw Count'
+					},
+					plotOptions : {
+						pie : {
+							colors : [ '#4D740F', '#D31F30' ]
 						}
-					}
-				},
-				series : [ {
-					name : 'Data Size',
-					data : dataSizeData
-				}, {
-					name : 'Max Used Blocks Count',
-					data : maxUsedBlocksCount
-				}, {
-					name : 'Max Used Blocks Size',
-					data : maxUsedBlocksSize
-				} ]
+					},
+					credits : {
+						enabled : false
+					},
+					series : [ {
+						type : 'pie',
+						name : 'Raw Count',
+						data : [ [ 'Succsessful', successful ], [ 'Fail', fail ] ]
+					} ]
+				});
+	
+				var dataSizeData = [], maxUsedBlocksSize = [], maxUsedBlocksCount = [];
+				$.each(summary.pool, function(index, e) {
+					dataSizeData.push([ parseInt(e.index), parseInt(e.datasize) ]);
+					maxUsedBlocksSize.push([ parseInt(e.index), parseInt(e.maxusedblkssize) ]);
+					maxUsedBlocksCount.push([ parseInt(e.index), parseInt(e.maxusedblkscount) ]);
+				});
+	
+				$('.summary .data-size-line[index=' + index + ']').highcharts({
+					chart : {
+						type : 'line'
+					},
+					title : {
+						text : 'Data Size Line',
+					},
+					yAxis : {
+						title : {
+							text : 'Data Size'
+						}
+					},
+					credits : {
+						enabled : false
+					},
+					plotOptions : {
+						line : {
+							marker : {
+								enabled : false
+							}
+						}
+					},
+					series : [ {
+						name : 'Data Size',
+						data : dataSizeData
+					}, {
+						name : 'Max Used Blocks Count',
+						data : maxUsedBlocksCount
+					}, {
+						name : 'Max Used Blocks Size',
+						data : maxUsedBlocksSize
+					} ]
+				});
 			});
 		},
 

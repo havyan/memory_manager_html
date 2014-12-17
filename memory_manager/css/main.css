@@ -123,6 +123,17 @@ h3 {
 	clear: both;
 }
 
+.summary-content {
+	border: solid 1px #ddd;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.summary-content .section_title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
 .pool-table-container {
 	height: 400px;
 	overflow-y: scroll;

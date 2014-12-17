@@ -7,17 +7,17 @@
         	Memory Consume
         </div>
     </div>
+	<div class="inner-header">
+		<p>
+			Info: <span class="value"><%= memoryConsume.info %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Current Consume: <span class="value"><%= memoryConsume.curconsume %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Time: <span class="value"><%= memoryConsume.time %>
+		</p>
+	</div>
 	<div class="section_content">
 		<% var total= memoryConsume.total %>
 		<div class="memory-consume-total">
 			<p class="memory-consume-total-title">Total</p>
-			<div class="inner-header">
-				<p>
-					Info: <span class="value"><%= total.info %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					Total: <span class="value"><%= total.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					Time: <span class="value"><%= total.time %>
-				</p>
-			</div>
 			<div class="section_content">
 				<% var memoryConsumeSections = $.isArray(total.section)?total.section: [total.section] %>
 				<% $.each(memoryConsumeSections, function(sectionIndex, memoryConsumeSection) { %>
@@ -40,13 +40,6 @@
 		<% var count = memoryConsume.count %>
 		<div class="memory-consume-count">
 			<p class="memory-consume-count-title">Count</p>
-			<div class="inner-header">
-				<p>
-					Info: <span class="value"><%= count.info %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					Total: <span class="value"><%= count.total %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					Time: <span class="value"><%= count.time %>
-				</p>
-			</div>
 			<div class="section_content">
 				<% var memoryConsumeSections = $.isArray(count.section)?count.section: [count.section] %>
 				<% $.each(memoryConsumeSections, function(sectionIndex, memoryConsumeSection) { %>

@@ -1,56 +1,90 @@
-<div class="manage-memory">
-	<h2>Manage Memory</h2>
-	<div class="manage-memory-content"></div>
-</div>
-<div class="raw-memory">
-	<h2>Raw Memory</h2>
-	<div class="raw-memory-content"></div>
-</div>
-<div class="summary-pie">
-	<div class="manage-pie"></div>
-	<div class="raw-pie"></div>
-</div>
-<div class="pool">
-	<h2>Pool</h2>
-	<div class="pool-table-container">
-		<table class="table table-hover table-striped table-bordered">
-	    	<thead>
-	        	<th>Index</th>
-	        	<th>Data Size</th>
-	        	<th>Create Box Count</th>
-	        	<th>Release Box Count</th>
-	        	<th>Max Used Blocks Count</th>
-	        	<th>Max Used Blocks Size</th>
-	        	<th>Max Existed Box Count</th>
-	        	<th>Max Existed Box Size</th>
-	        	<th>Usage</th>
-	        	<th>Allocated Successful Count</th>
-	        	<th>Allocated Fail Count</th>
-	        	<th>Deallocated Count</th>
-	        	<th>Allocated Successful Size</th>
-	        	<th>Allocated Fail Size</th>
-	    	</thead>
-	    	<tbody>
-			<% $.each(this.pool, function(index, e) { %>
-				<tr>
-					<td><%= e.index %></td>
-					<td><%= e.datasize %></td>
-					<td><%= e.createboxcount %></td>
-					<td><%= e.releaseboxcount %></td>
-					<td><%= e.maxusedblkscount %></td>
-					<td><%= e.maxusedblkssize %></td>
-					<td><%= e.maxexistboxscount %></td>
-					<td><%= e.maxexistboxssize %></td>
-					<td><%= e.usage %></td>
-					<td><%= e.allocsucccount %></td>
-					<td><%= e.allocfailcount %></td>
-					<td><%= e.dealloccount %></td>
-					<td><%= e.allocsuccsize %></td>
-					<td><%= e.allocfailsize %></td>
-				</tr>
-			<% }) %>
-			</tbody>
-		</table>
+<% var summarys=$.isArray(this)?this: [this] %>
+<% $.each(summarys, function(index, summary) { %>
+<div class="summary-content">
+	<div class="section_head">
+        <div class="hide_button"></div>
+        <div class="section_title">
+        	Summary
+        </div>
+    </div>
+    <div class="section_content">
+		<% 
+			var manageMemory = {
+				"Max Memory Consuption" : summary.mgrmemory.maxmemconsumption,
+				"Allocated Succsessful Count" : summary.mgrmemory.allocatesucccount,
+				"Allocated Fail Count" : summary.mgrmemory.allocatefailcount,
+				"Deallocated Count" : summary.mgrmemory.deallocatecount,
+				"Allocated Succsessful Size" : summary.mgrmemory.allocatesuccsize,
+				"Allocated Fail Size" : summary.mgrmemory.allocatefailsize
+			};
+			var rawMemory = {
+				"Allocated Succsessful Count" : summary.rawmemory.allocatesucccount,
+				"Allocated Fail Count" : summary.rawmemory.allocatefailcount,
+				"Deallocated Count" : summary.rawmemory.deallocatecount,
+				"Allocated Succsessful Size" : summary.rawmemory.allocatesuccsize,
+				"Allocated Fail Size" : summary.rawmemory.allocatefailsize
+			};
+		%>
+		<div class="manage-memory">
+			<h2>Manage Memory</h2>
+			<div class="manage-memory-content">
+				<%== can.view.render('ejs/name_value.ejs', {data : manageMemory}) %>
+			</div>
+		</div>
+		<div class="raw-memory">
+			<h2>Raw Memory</h2>
+			<div class="raw-memory-content">
+				<%== can.view.render('ejs/name_value.ejs', {data : rawMemory}) %>
+			</div>
+		</div>
+		<div class="summary-pie" index="<%= index %>">
+			<div class="manage-pie"></div>
+			<div class="raw-pie"></div>
+		</div>
+		<div class="pool">
+			<h2>Pool</h2>
+			<div class="pool-table-container">
+				<table class="table table-hover table-striped table-bordered">
+					<thead>
+						<th>Index</th>
+						<th>Data Size</th>
+						<th>Create Box Count</th>
+						<th>Release Box Count</th>
+						<th>Max Used Blocks Count</th>
+						<th>Max Used Blocks Size</th>
+						<th>Max Existed Box Count</th>
+						<th>Max Existed Box Size</th>
+						<th>Usage</th>
+						<th>Allocated Successful Count</th>
+						<th>Allocated Fail Count</th>
+						<th>Deallocated Count</th>
+						<th>Allocated Successful Size</th>
+						<th>Allocated Fail Size</th>
+					</thead>
+					<tbody>
+						<% $.each(summary.pool, function(index, e) { %>
+						<tr>
+							<td><%= e.index %></td>
+							<td><%= e.datasize %></td>
+							<td><%= e.createboxcount %></td>
+							<td><%= e.releaseboxcount %></td>
+							<td><%= e.maxusedblkscount %></td>
+							<td><%= e.maxusedblkssize %></td>
+							<td><%= e.maxexistboxscount %></td>
+							<td><%= e.maxexistboxssize %></td>
+							<td><%= e.usage %></td>
+							<td><%= e.allocsucccount %></td>
+							<td><%= e.allocfailcount %></td>
+							<td><%= e.dealloccount %></td>
+							<td><%= e.allocsuccsize %></td>
+							<td><%= e.allocfailsize %></td>
+						</tr>
+						<% }) %>
+					</tbody>
+				</table>
+			</div>
+			<div class="data-size-line"  index="<%= index %>"></div>
+		</div>
 	</div>
-	<div class="data-size-line"></div>
 </div>
+<% }) %>
